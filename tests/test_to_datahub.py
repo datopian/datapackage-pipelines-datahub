@@ -15,5 +15,5 @@ log = logging.getLogger(__name__)
 
 class TestToS3Proccessor(unittest.TestCase):
 
-    def test_workin(self):
+    def test_working(self):
         assert 1 == 1
