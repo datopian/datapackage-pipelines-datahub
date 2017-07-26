@@ -13,7 +13,7 @@ pip install -e .
 
 You will need [DataHub Command Line tool](http://docs.datahub.io/publishers/cli/#installation) to be installed on you machine.
 
-You can use datapackage-pipelines-datahub as a plugin for (dpp)[https://github.com/frictionlessdata/datapackage-pipelines#datapackage-pipelines]. In pipeline-spec.yaml it will look like this
+You can use datapackage-pipelines-datahub as a plugin for [dpp](https://github.com/frictionlessdata/datapackage-pipelines#datapackage-pipelines). In pipeline-spec.yaml it will look like this
 
 ```yaml
   ...
