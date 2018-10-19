@@ -3,7 +3,7 @@
 ## Install
 
 ```
-# clone the repo and install it wit pip
+# clone the repo and install it with pip
 
 git clone https://github.com/datahq/datapackage-pipelines-datahub.git
 pip install -e .

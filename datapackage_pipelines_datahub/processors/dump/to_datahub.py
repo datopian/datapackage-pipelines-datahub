@@ -20,12 +20,12 @@ class DataHubDumper(FileDumper):
         return datapackage
 
     def write_file_to_output(self, filename, path):
-
         # Move tempfiles without names to tempfolder with names for upload
         path = os.path.join(self.tmpfolder, path)
         path_part = os.path.dirname(path)
         DataHubDumper.__makedirs(path_part)
-        shutil.move(filename, path)
+        shutil.copy(filename, path)
+        os.chmod(path, 0o666)
 
         # Get the total number of file to push including dp.json
         files_in_paths = [x[2] for x in os.walk(self.tmpfolder) if len(x[2])]
@@ -35,10 +35,10 @@ class DataHubDumper(FileDumper):
 
         # Check if number of files and number of resources + dp.json are equal
         # and push all together
-        # TODO: what about README?
         if len(all_files) == len(self.datapackage['resources']) + 1:
             out = subprocess.check_output(["data", "push", self.tmpfolder])
             logging.info(out)
+        return path
 
     @staticmethod
     def __makedirs(path):
