@@ -24,6 +24,11 @@ You can use datapackage-pipelines-datahub as a plugin for [dpp](https://github.c
 
 publishes DataSet to [DataHub.io](http://next.datahub.io/)
 
+Parameters:
+
+* `findability` - Dataset visibility on the DataHub.io. One of `public` (default), `private`, `unlisted`.
+* other `data push` related options. Eg: `schedule`, `name` etc... see `data push -h` for more.
+
 Example:
 
 ```
@@ -41,4 +46,7 @@ datahub:
         resource: my-resource
     -
       run: datahub.dump.to_datahub
+      parameters:
+        findability: private
+        schedule: every 2d
 ```
