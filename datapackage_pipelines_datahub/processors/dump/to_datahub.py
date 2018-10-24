@@ -11,6 +11,7 @@ class DataHubDumper(FileDumper):
 
     def initialize(self, params):
         super(DataHubDumper, self).initialize(params)
+        self.file_counter = 0
         self.tmpfolder = tempfile.mkdtemp()
         subprocess.check_output(["data", "login"])
 
@@ -27,17 +28,13 @@ class DataHubDumper(FileDumper):
         shutil.copy(filename, path)
         os.chmod(path, 0o666)
 
-        # Get the total number of file to push including dp.json
-        files_in_paths = [x[2] for x in os.walk(self.tmpfolder) if len(x[2])]
-        all_files = []
-        for file in files_in_paths:
-            all_files += file
-
+        self.file_counter += 1
         # Check if number of files and number of resources + dp.json are equal
-        # and push all together
-        if len(all_files) == len(self.datapackage['resources']) + 1:
+
+        if self.file_counter == len(self.datapackage['resources']) + 1:
             out = subprocess.check_output(["data", "push", self.tmpfolder])
             logging.info(out)
+
         return path
 
     @staticmethod
