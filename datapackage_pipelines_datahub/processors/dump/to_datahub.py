@@ -17,6 +17,9 @@ class DataHubDumper(FileDumper):
         if not self.findability.startswith('--'):
             self.findability = '--' + self.findability
         self.options = ['--%s=%s' % (k, v) for k,v in params.items()]
+        self.config_file = params.get(
+            'config', os.path.expanduser('~/.config/datahub/config.json')
+        )
         subprocess.check_output(["data", "login"])
 
     def prepare_datapackage(self, datapackage, params):
@@ -35,6 +38,7 @@ class DataHubDumper(FileDumper):
         # Check if number of files and number of resources + dp.json are equal
         self.file_counter += 1
         if self.file_counter == len(self.datapackage['resources']) + 1:
+            os.environ['DATAHUB_JSON'] = self.config_file
             out = subprocess.check_output(
                 ["data", "push", self.tmpfolder, self.findability] + self.options
             )
