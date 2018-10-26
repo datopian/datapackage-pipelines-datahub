@@ -17,9 +17,9 @@ class DataHubDumper(FileDumper):
         if not self.findability.startswith('--'):
             self.findability = '--' + self.findability
         self.options = ['--%s=%s' % (k, v) for k,v in params.items()]
-        self.config_file = params.get(
-            'config', os.path.expanduser('~/.config/datahub/config.json')
-        )
+        self.config_file = os.path.expanduser(params.pop(
+            'config', '~/.config/datahub/config.json'
+        ))
         subprocess.check_output(["data", "login"])
 
     def prepare_datapackage(self, datapackage, params):
