@@ -3,10 +3,7 @@
 ## Install
 
 ```
-# clone the repo and install it with pip
-
-git clone https://github.com/datahq/datapackage-pipelines-datahub.git
-pip install -e .
+pip install datapackage-pipelines-datahub
 ```
 
 ## Usage
@@ -27,7 +24,7 @@ publishes DataSet to [DataHub.io](http://next.datahub.io/)
 Parameters:
 
 * `config` - full path to the `config.json` file. Default: `~/.config/datahub/config.json`
-  * Alternatively you can just set `DATAHUB_JSON` environt variable to be equal to the path to the config file 
+  * Alternatively you can just set `DATAHUB_JSON` environt variable to be equal to the path to the config file
 * `findability` - Dataset visibility on the DataHub.io. One of `public` (default), `private`, `unlisted`.
 * other `data push` related options. Eg: `schedule`, `name` etc... see `data push -h` for more.
 
