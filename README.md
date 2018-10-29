@@ -17,6 +17,8 @@ You can use datapackage-pipelines-datahub as a plugin for [dpp](https://github.c
   - run: datahub.dump.to_datahub
 ```
 
+*Note: For pushing datasets to testing server set `DATAHUB_ENV=testing`*
+
 ### dump.to_datahub
 
 publishes DataSet to [DataHub.io](http://next.datahub.io/)

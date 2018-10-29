@@ -16,6 +16,8 @@ class DataHubDumper(FileDumper):
         self.findability = params.pop('findability', '--published')
         if not self.findability.startswith('--'):
             self.findability = '--' + self.findability
+        if os.environ.get('DATAHUB_ENV') == 'testing':
+            params['api'] = 'https://api-testing.datahub.io'
         self.options = ['--%s=%s' % (k, v) for k,v in params.items()]
         self.config_file = os.path.expanduser(params.pop(
             'config', '~/.config/datahub/config.json'
